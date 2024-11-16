@@ -1,25 +1,36 @@
 
-.container.data-v-e6e5e79f {
+.container {
   padding: 20px;
 }
-.content.data-v-e6e5e79f {
+.content {
   margin-bottom: 100px; /* 留出底部按钮的空间 */
 }
-.bottom-btn.data-v-e6e5e79f {
+.bottom-btn-container {
   position: fixed;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
   z-index: 10;
 }
-button.data-v-e6e5e79f {
-  padding: 10px 20px;
+.bottom-btn-add-course, .bottom-btn-schedule-setting {
   background-color: #1c97f7;
   color: white;
-  border: none;
+  padding: 10px 20px;
   border-radius: 20px;
   font-size: 16px;
+  text-align: center;
 }
-button.data-v-e6e5e79f:hover {
+.bottom-btn-add-course {
+  margin-right: 10px; /* 按钮间距 */
+}
+.bottom-btn-schedule-setting {
+  background-color: #1873b0;
+}
+
+/* 按钮点击样式 */
+.bottom-btn-add-course:hover, .bottom-btn-schedule-setting:hover {
   background-color: #1873b0;
 }

@@ -1,1 +1,1 @@
-<view class="container data-v-e6e5e79f"><view class="content data-v-e6e5e79f"><text class="data-v-e6e5e79f">这里是页面内容</text></view><view class="bottom-btn data-v-e6e5e79f"><button class="data-v-e6e5e79f" bindtap="{{a}}">跳转到课程表</button></view></view>
+<view class="container"><view class="content"></view><view class="bottom-btn-container"><view class="bottom-btn-add-course" bindtap="{{a}}">添加课程</view><view class="bottom-btn-schedule-setting">设置日程</view></view></view>

@@ -1,0 +1,25 @@
+
+.container.data-v-e6e5e79f {
+  padding: 20px;
+}
+.content.data-v-e6e5e79f {
+  margin-bottom: 100px; /* 留出底部按钮的空间 */
+}
+.bottom-btn.data-v-e6e5e79f {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+button.data-v-e6e5e79f {
+  padding: 10px 20px;
+  background-color: #1c97f7;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+}
+button.data-v-e6e5e79f:hover {
+  background-color: #1873b0;
+}

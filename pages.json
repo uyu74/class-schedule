@@ -7,6 +7,19 @@
 			}
 		}
 	],
+	
+	"tabBar": {
+		"color": "#3F536E",
+		"backgroundColor": "#fff",
+		"borderStyle": "#0000FF"
+		"list": [
+			{
+				"pagePath": "pages/schedule/schedule",
+				"text": "课程表",
+			}
+		],
+	},
+	
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",

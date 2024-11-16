@@ -12,6 +12,13 @@
     	{
     		"navigationBarTitleText" : "课程表"
     	}
+    },
+    {
+    	"path" : "pages/obtain_class_information/obtain_class_information",
+    	"style" : 
+    	{
+    		"navigationBarTitleText" : ""
+    	}
     }
   ],
   "globalStyle": {

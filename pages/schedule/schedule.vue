@@ -71,7 +71,7 @@ export default {
 }
 
 .bottom-btn-schedule-setting {
-  background-color: #1873b0;
+  background-color: #1c97f7;
 }
 
 /* 按钮点击样式 */

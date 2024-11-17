@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/schedule/schedule",
     "pages/obtain_class_information/obtain_class_information",
-    "pages/schedule_settings/schedule_settings"
+    "pages/schedule_settings/schedule_settings",
+    "obtain_todo_information/obtain_todo_information"
   ],
   "window": {
     "navigationBarTextStyle": "black",

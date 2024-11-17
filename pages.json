@@ -27,6 +27,13 @@
     		"navigationBarTitleText" : ""
     	}
     },
+    {
+    	"path" : "obtain_todo_information/obtain_todo_information",
+    	"style" : 
+    	{
+    		"navigationBarTitleText" : ""
+    	}
+    }
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",

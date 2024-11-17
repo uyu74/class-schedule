@@ -1,1 +1,1 @@
-<view class="container"><view class="content"></view><view class="bottom-btn-container"><view class="bottom-btn-add-course" bindtap="{{a}}">添加课程</view><view class="bottom-btn-schedule-setting">设置日程</view></view></view>
+<view class="container"><view class="content"></view><view class="bottom-btn-container"><view class="bottom-btn-add-course" bindtap="{{a}}">添加课程</view><view class="bottom-btn-schedule-setting" bindtap="{{b}}">设置日程</view></view></view>

@@ -7,8 +7,8 @@
     
     <!-- 底部按钮 -->
     <view class="bottom-btn-container">
-      <view class="bottom-btn-add-course" @click="goToNextPage">添加课程</view>
-      <view class="bottom-btn-schedule-setting">设置日程</view>
+      <view class="bottom-btn-add-course" @click="goToObtainClassInformationPage">添加课程</view>
+      <view class="bottom-btn-schedule-setting" @click="goToScheduleSettingsPage">设置日程</view>
     </view>
   </view>
 </template>
@@ -19,12 +19,20 @@ export default {
     return {};
   },
   methods: {
+	  
     // 跳转到课程表页面
-    goToNextPage() {
+    goToObtainClassInformationPage() {
       uni.navigateTo({
         url: '/pages/obtain_class_information/obtain_class_information'  // 目标页面路径
       });
-    }
+    },
+	
+	goToScheduleSettingsPage() {
+		uni.navigateTo({
+			url: '/pages/schedule_settings/schedule_settings'
+		});
+	}
+	
   }
 };
 </script>

@@ -1,1 +1,0 @@
-<view class="wrapper"><view class="content"><view wx:for="{{a}}" wx:for-item="item" wx:key="b">Item {{item.a}}</view></view></view>

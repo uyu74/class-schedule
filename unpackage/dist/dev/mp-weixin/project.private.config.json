@@ -3,5 +3,18 @@
   "projectname": "class schedule",
   "setting": {
     "compileHotReLoad": true
+  },
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/obtain_todo_infromation/obtain_todo_infromation",
+          "pathName": "pages/obtain_todo_infromation/obtain_todo_infromation",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        }
+      ]
+    }
   }
 }

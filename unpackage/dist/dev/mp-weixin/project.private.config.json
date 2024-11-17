@@ -3,25 +3,5 @@
   "projectname": "class schedule",
   "setting": {
     "compileHotReLoad": true
-  },
-  "condition": {
-    "miniprogram": {
-      "list": [
-        {
-          "name": "obtain_todo_information/obtain_todo_information",
-          "pathName": "obtain_todo_information/obtain_todo_information",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "pages/schedule_settings/schedule_settings",
-          "pathName": "pages/schedule_settings/schedule_settings",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        }
-      ]
-    }
   }
 }

@@ -24,14 +24,14 @@
     </view>
 
     <!-- 课程列表 -->
-    <view class="course-list">
+<!--    <view class="course-list">
       <view class="course-item" v-for="(course, index) in courses" :key="index">
         <view class="course-name">{{ course.name }}</view>
         <view class="course-time">时间: {{ course.time }}</view>
         <view class="course-location">地点: {{ course.location }}</view>
       </view>
     </view>
-  </view>
+  </view> -->
 </template>
 
 <script>
@@ -59,6 +59,8 @@ export default {
         this.courseName = "";
         this.courseTime = "";
         this.courseLocation = "";
+		
+		uni.setStorageSync("courses", this.courses);
 
         // 提示添加成功
         uni.showToast({

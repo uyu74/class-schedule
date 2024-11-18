@@ -19,7 +19,6 @@ export default {
     return {};
   },
   methods: {
-	  
     // 跳转到课程表页面
     goToObtainClassInformationPage() {
       uni.navigateTo({
@@ -31,6 +30,15 @@ export default {
 		uni.navigateTo({
 			url: '/pages/schedule_settings/schedule_settings'
 		});
+	}
+	onLoad() {
+		const storedCourses = uni.getStorageSync("courses");
+		if (storedCourses) {
+			this.courses = storedCourses;
+			console.log("成功找到课程");
+		} else {
+			console.log("没有找到课程数据");
+		}
 	}
 	
   }

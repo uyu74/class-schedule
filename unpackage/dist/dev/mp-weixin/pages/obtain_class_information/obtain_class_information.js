@@ -21,6 +21,7 @@ const _sfc_main = {
         this.courseName = "";
         this.courseTime = "";
         this.courseLocation = "";
+        common_vendor.index.setStorageSync("courses", this.courses);
         common_vendor.index.showToast({
           title: "课程已添加",
           icon: "success"

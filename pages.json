@@ -48,10 +48,10 @@
         "pagePath": "pages/index/index",
         "text": "首页"
       },
-	  {
+	    {
 		  "pagePath": "pages/schedule/schedule",
 		  "text": "课程表"
-	  }
+	    }
     ]
   }
 }

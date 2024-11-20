@@ -16,6 +16,15 @@ const _sfc_main = {
       common_vendor.index.navigateTo({
         url: "/pages/schedule_settings/schedule_settings"
       });
+    },
+    onLoad() {
+      const storedCourses = common_vendor.index.getStorageSync("courses");
+      if (storedCourses) {
+        this.courses = storedCourses;
+        console.log("成功找到课程");
+      } else {
+        console.log("没有找到课程数据");
+      }
     }
   }
 };

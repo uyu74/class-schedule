@@ -22,7 +22,7 @@
         <button class="submit-btn" type="button" @click="addCourse">添加课程</button>
       </form>
     </view>
-
+ </view>
     <!-- 课程列表 -->
 <!--    <view class="course-list">
       <view class="course-item" v-for="(course, index) in courses" :key="index">

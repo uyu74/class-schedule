@@ -30,7 +30,7 @@ export default {
 		uni.navigateTo({
 			url: '/pages/schedule_settings/schedule_settings'
 		});
-	}
+	},
 	onLoad() {
 		const storedCourses = uni.getStorageSync("courses");
 		if (storedCourses) {

@@ -44,15 +44,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     e: $data.courseLocation,
     f: common_vendor.o(($event) => $data.courseLocation = $event.detail.value),
     g: common_vendor.o((...args) => $options.addCourse && $options.addCourse(...args)),
-    h: common_vendor.o((...args) => $options.addCourse && $options.addCourse(...args)),
-    i: common_vendor.f($data.courses, (course, index, i0) => {
-      return {
-        a: common_vendor.t(course.name),
-        b: common_vendor.t(course.time),
-        c: common_vendor.t(course.location),
-        d: index
-      };
-    })
+    h: common_vendor.o((...args) => $options.addCourse && $options.addCourse(...args))
   };
 }
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-bb6e3cb4"]]);

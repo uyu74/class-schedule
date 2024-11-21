@@ -15,10 +15,10 @@
 			}
 		},
 		onLoad() {
-
+			
 		},
 		methods: {
-
+			
 		}
 	}
 </script>

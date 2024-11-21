@@ -82,45 +82,69 @@ export default {
   ,
   
   methods: {
-    // 添加日程
-    addTodo() {
-      if (this.todoContent) {
-        // 添加日程到日程列表
+	// 添加日程
+	addTodo() {
+		//检测初始化
+		if (this.todoContent) {
+		  let todo_len = 0;
+		  try{
+			  todo_len = uni.getStorageSync("todo-len");
+			  console.log(todo_len);
+			  if(!todo_len)
+			  {
+				  todo_len = 0;
+				  uni.setStorageSync("todo-len",todo_len);
+			  }
+			  
+		  } catch(e) {
+			  //获取长度失败
+			  uni.showToast({
+				title: '更新数据失败',
+				icon:"error"
+			  });
+			 return;
+		}
+		  
+		// 添加日程到显示的日程列表
 		this.todoTime = this.todoTimeDate+"  "+this.todoTimeClock;
-        this.todos.push({
-		  content: this.todoContent,
-		  time: this.todoTime,
-		  remark: this.todoRemark
-        });
-
-        // 清空输入框
-        this.todoContent = "";
-        this.todoTime = "";
-        this.todoRemark = "";
-
-        // 提示添加成功
-        uni.showToast({
-          title: "日程已添加",
-          icon: "success"
-        });
-      } else {
-        uni.showToast({
-          title: "请填写完整的课程信息",
-          icon: "none"
-        });
-      }
-    },
-	
-	changeDate(e){
-		this.todoTimeDate = e.detail.value;
-		console.log(this.todoTimeDate);
-	},
-    
-	changeClock(e) {
-		this.todoTimeClock = e.detail.value;
-		console.log(this.todoTimeClock);
-	}
-  }
+		this.todos.push({
+			  _id:todo_len+1,
+			  content: this.todoContent,
+			  time: this.todoTime,
+			  remark: this.todoRemark
+		});
+		
+		//由于推荐储存为字符串形式为了方便解析，使用/分割各个量，依次为content,time,remark
+		uni.setStorageSync("todo-"+(todo_len+1).toString(),this.todos[this.todos.length -1]);
+		uni.setStorageSync("todo-len",todo_len+1);
+		// 清空输入框
+		this.todoContent = "";
+		this.todoTime = "";
+		this.todoRemark = "";
+		
+		// 提示添加成功
+		uni.showToast({
+		title: "日程已添加",
+		icon: "success"
+		});
+		} else {
+		uni.showToast({
+		  title: "请填写完整的课程信息",
+		  icon: "error"
+		});
+		}
+	  },
+		
+		changeDate(e){
+			this.todoTimeDate = e.detail.value;
+			console.log(this.todoTimeDate);
+		},
+		
+		changeClock(e) {
+			this.todoTimeClock = e.detail.value;
+			console.log(this.todoTimeClock);
+		}
+	  }
 };
 </script>
 

@@ -28,12 +28,30 @@ const _sfc_main = {
     // 添加日程
     addTodo() {
       if (this.todoContent) {
+        let todo_len = 0;
+        try {
+          todo_len = common_vendor.index.getStorageSync("todo-len");
+          console.log(todo_len);
+          if (!todo_len) {
+            todo_len = 0;
+            common_vendor.index.setStorageSync("todo-len", todo_len);
+          }
+        } catch (e) {
+          common_vendor.index.showToast({
+            title: "更新数据失败",
+            icon: "error"
+          });
+          return;
+        }
         this.todoTime = this.todoTimeDate + "  " + this.todoTimeClock;
         this.todos.push({
+          _id: todo_len + 1,
           content: this.todoContent,
           time: this.todoTime,
           remark: this.todoRemark
         });
+        common_vendor.index.setStorageSync("todo-" + (todo_len + 1).toString(), this.todos[this.todos.length - 1]);
+        common_vendor.index.setStorageSync("todo-len", todo_len + 1);
         this.todoContent = "";
         this.todoTime = "";
         this.todoRemark = "";
@@ -44,7 +62,7 @@ const _sfc_main = {
       } else {
         common_vendor.index.showToast({
           title: "请填写完整的课程信息",
-          icon: "none"
+          icon: "error"
         });
       }
     },

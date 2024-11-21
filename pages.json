@@ -33,6 +33,13 @@
     	{
     		"navigationBarTitleText" : ""
     	}
+    },
+    {
+    	"path" : "pages/todo/todo",
+    	"style" : 
+    	{
+    		"navigationBarTitleText" : "课程作业"
+    	}
     }
   ],
   "globalStyle": {

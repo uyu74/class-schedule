@@ -7,6 +7,7 @@ if (!Math) {
   "./pages/obtain_class_information/obtain_class_information.js";
   "./pages/schedule_settings/schedule_settings.js";
   "./pages/obtain_todo_infromation/obtain_todo_infromation.js";
+  "./pages/todo/todo.js";
 }
 const _sfc_main = {
   onLaunch: function() {

@@ -8,6 +8,7 @@ if (!Math) {
   "./pages/schedule_settings/schedule_settings.js";
   "./pages/obtain_todo_infromation/obtain_todo_infromation.js";
   "./pages/todo/todo.js";
+  "./pages/todo_settings/todo_settings.js";
 }
 const _sfc_main = {
   onLaunch: function() {

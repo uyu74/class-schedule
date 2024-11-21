@@ -23,8 +23,10 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.contenter.data-v-067fb54d {
+page.data-v-067fb54d {
   background-color: #fdfdec;
+}
+.contenter.data-v-067fb54d {
   padding: 30rpx 50rpx;
   height: 100vh;
 }
@@ -60,4 +62,18 @@
 }
 .contenter .badtodo-item.data-v-067fb54d {
   border: 1rpx solid red;
+}
+.addItemIcon.data-v-067fb54d {
+  position: fixed;
+  bottom: 100rpx;
+  right: 60rpx;
+  width: 100rpx;
+  height: 100rpx;
+  border: 1rpx solid lightblue;
+  border-radius: 10rpx;
+  background-color: #ccc;
+}
+.addItemIcon image.data-v-067fb54d {
+  width: 100%;
+  height: 100%;
 }

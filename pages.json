@@ -40,6 +40,13 @@
     	{
     		"navigationBarTitleText" : "课程作业"
     	}
+    },
+    {
+    	"path" : "pages/todo_settings/todo_settings",
+    	"style" : 
+    	{
+    		"navigationBarTitleText" : ""
+    	}
     }
   ],
   "globalStyle": {

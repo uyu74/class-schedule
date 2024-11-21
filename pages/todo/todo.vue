@@ -1,9 +1,11 @@
 <template>
 	<view class="contenter">
-		<div v-for="todo in todos">
+		<div v-for="(todo,index) in todos" :key="index">
 			<view :class="{
 				'goodtodo-item':true,
-				'badtodo-item':todo.time<=currentTime}">
+				'badtodo-item':todo.time<=currentTime}"
+				@longpress="onlongPressTodo(index)"
+				@click="onclickTodo(index)">
 				<view class="todo-content">
 					<text class="todo-label">内容：</text>
 					<text>{{todo.content}}</text>
@@ -18,7 +20,9 @@
 				</view>
 			</view>
 		</div>
-		
+	</view>
+	<view class="addItemIcon" @click="moveToAddTodo()">
+		<image src="../../static/todoAdd.png"></image>
 	</view>
 </template>
 
@@ -33,10 +37,10 @@
 		},
 		onShow()
 		{
-			console.log("出现了");
+			//console.log("出现了");
 			const todo_list = uni.getStorageSync("todo-list");
 			if(todo_list){
-				console.log(todo_list);
+				//console.log(todo_list);
 				this.todos = todo_list;
 			}
 			else
@@ -64,14 +68,50 @@
 			
 		},
 		methods: {
-			
+			onclickTodo(i){
+				uni.navigateTo({
+					url:"/pages/todo_settings/todo_settings?id="+i
+				})
+			},
+			moveToAddTodo(){
+				console.log("点了");
+				uni.navigateTo({
+					url:"/pages/obtain_todo_infromation/obtain_todo_infromation"
+				})
+			},
+			deleteTodo(i){
+				let todo_list = uni.getStorageSync("todo-list");
+				//console.log(todo_list);
+				todo_list.splice(i,1);
+				this.todos = todo_list;
+				uni.setStorageSync("todo-list",todo_list);
+				return;
+			},
+			onlongPressTodo(i){
+				uni.showModal({
+					title:"提示",
+					content:"确定要删除该事项吗",
+					success:(res)=>{
+						if(res.confirm)
+						this.deleteTodo(i);
+					},
+					fail:(err)=>{
+						uni.showToast({
+							title:"运行失败",
+							icon:"err"
+						})
+					}
+				})
+			}
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
-.contenter {
+page {
 	background-color: #fdfdec;
+}
+.contenter {
 	padding: 30rpx 50rpx;
 	height: 100vh;
 	.goodtodo-item,.badtodo-item {
@@ -106,6 +146,20 @@
 	}
 	.badtodo-item {
 		border: 1rpx solid red;
+	}
+}
+.addItemIcon {
+	position: fixed;
+	bottom:100rpx;
+	right:60rpx;
+	width:100rpx;
+	height: 100rpx;
+	border: 1rpx solid lightblue;
+	border-radius: 10rpx;
+	background-color: #ccc;
+	image {
+		width: 100%;
+		height: 100%;
 	}
 }
 </style>

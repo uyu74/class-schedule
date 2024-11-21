@@ -5,7 +5,8 @@
     "pages/obtain_class_information/obtain_class_information",
     "pages/schedule_settings/schedule_settings",
     "pages/obtain_todo_infromation/obtain_todo_infromation",
-    "pages/todo/todo"
+    "pages/todo/todo",
+    "pages/todo_settings/todo_settings"
   ],
   "window": {
     "navigationBarTextStyle": "black",

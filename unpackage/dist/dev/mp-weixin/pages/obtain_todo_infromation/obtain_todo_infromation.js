@@ -6,7 +6,7 @@ const _sfc_main = {
       todoContent: "",
       todoTime: "",
       todoTimeDate: "",
-      todoTimeClock: "0:0",
+      todoTimeClock: "00:00",
       todoRemark: "",
       todos: []
     };
@@ -22,56 +22,75 @@ const _sfc_main = {
       day = day > 9 ? day : "0" + day;
       this.todoTimeDate = `${year}-${month}-${day}`;
       return `${year}-${month}-${day}`;
+    },
+    disableButton() {
+      return !this.todoContent.trim();
     }
   },
   methods: {
+    //更新储存，按时间顺序
+    refreshStorage(e) {
+      let old_todolist = common_vendor.index.getStorageSync("todo-list");
+      let insertIndex = old_todolist.findIndex((item) => item.time > e.time);
+      if (insertIndex == -1) {
+        old_todolist.push(e);
+      } else {
+        console.log(insertIndex);
+        old_todolist.splice(insertIndex, 0, e);
+      }
+      common_vendor.index.setStorageSync("todo-list", old_todolist);
+      return true;
+    },
+    //本页的显示的更新
+    refreshTodoShown(e) {
+      this.todos.push(e);
+      return;
+    },
+    //检测初始化，若没有就初始为空
+    initTodoList() {
+      let todo_list = common_vendor.index.getStorageSync("todo-list");
+      if (!todo_list) {
+        common_vendor.index.setStorageSync("todo-list", [
+          /* {
+          	content:"",
+          	time:"",
+          	remark:""
+          } */
+        ]);
+      }
+      return;
+    },
     // 添加日程
     addTodo() {
-      if (this.todoContent) {
-        let todo_len = 0;
-        try {
-          todo_len = common_vendor.index.getStorageSync("todo-len");
-          console.log(todo_len);
-          if (!todo_len) {
-            todo_len = 0;
-            common_vendor.index.setStorageSync("todo-len", todo_len);
-          }
-        } catch (e) {
-          common_vendor.index.showToast({
-            title: "更新数据失败",
-            icon: "error"
-          });
-          return;
-        }
-        this.todoTime = this.todoTimeDate + "  " + this.todoTimeClock;
-        this.todos.push({
-          _id: todo_len + 1,
-          content: this.todoContent,
-          time: this.todoTime,
-          remark: this.todoRemark
-        });
-        common_vendor.index.setStorageSync("todo-" + (todo_len + 1).toString(), this.todos[this.todos.length - 1]);
-        common_vendor.index.setStorageSync("todo-len", todo_len + 1);
-        this.todoContent = "";
-        this.todoTime = "";
-        this.todoRemark = "";
+      this.initTodoList();
+      const todo = {
+        content: this.todoContent,
+        time: this.todoTimeDate + " " + this.todoTimeClock,
+        remark: this.todoRemark
+      };
+      const successStorage = this.refreshStorage(todo);
+      if (successStorage == false) {
         common_vendor.index.showToast({
-          title: "日程已添加",
-          icon: "success"
-        });
-      } else {
-        common_vendor.index.showToast({
-          title: "请填写完整的课程信息",
+          content: "内存操作异常",
           icon: "error"
         });
+        return;
       }
+      this.refreshTodoShown(todo);
+      this.todoContent = "";
+      this.todoRemark = "";
     },
     changeDate(e) {
       this.todoTimeDate = e.detail.value;
-      console.log(this.todoTimeDate);
     },
     changeClock(e) {
       this.todoTimeClock = e.detail.value;
+      let parts = this.todoTimeClock.split(":");
+      if (parts[0] == "0")
+        parts[0].push("0");
+      if (parts[1] == "0")
+        parts[1].push("0");
+      this.todoTimeClock = parts[0] + ":" + parts[1];
       console.log(this.todoTimeClock);
     }
   }
@@ -89,9 +108,12 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     i: common_vendor.o((...args) => $options.changeClock && $options.changeClock(...args)),
     j: $data.todoRemark,
     k: common_vendor.o(($event) => $data.todoRemark = $event.detail.value),
-    l: common_vendor.o((...args) => $options.addTodo && $options.addTodo(...args)),
-    m: common_vendor.o((...args) => $options.addTodo && $options.addTodo(...args)),
-    n: common_vendor.f($data.todos, (todo, index, i0) => {
+    l: $options.disableButton ? 1 : "",
+    m: !$options.disableButton ? 1 : "",
+    n: $options.disableButton,
+    o: common_vendor.o((...args) => $options.addTodo && $options.addTodo(...args)),
+    p: common_vendor.o((...args) => $options.addTodo && $options.addTodo(...args)),
+    q: common_vendor.f($data.todos, (todo, index, i0) => {
       return {
         a: common_vendor.t(todo.content),
         b: common_vendor.t(todo.time),

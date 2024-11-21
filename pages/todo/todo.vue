@@ -1,7 +1,9 @@
 <template>
 	<view class="contenter">
-		<div v-for="todo in todos" :key="todo._id">
-			<view class="todo-item">
+		<div v-for="todo in todos">
+			<view :class="{
+				'goodtodo-item':true,
+				'badtodo-item':todo.time<=currentTime}">
 				<view class="todo-content">
 					<text class="todo-label">内容：</text>
 					<text>{{todo.content}}</text>
@@ -32,18 +34,32 @@
 		onShow()
 		{
 			console.log("出现了");
-			const todo_len = uni.getStorageSync("todo-len");
-			console.log(todo_len);
-			for(let i=1;i<=todo_len;i = i+1)
-			{	
-				console.log(i);
-				let todo_item = uni.getStorageSync("todo-"+i);
-				if(todo_item){
-					this.todos[i-1] = todo_item;
-					console.log(todo_item);
-				}else{
-					console.log("错误");
-				}
+			const todo_list = uni.getStorageSync("todo-list");
+			if(todo_list){
+				console.log(todo_list);
+				this.todos = todo_list;
+			}
+			else
+			{
+				console.log("没有list");
+			}
+			
+		},
+		computed:{
+			 currentTime() {
+			    // 获取当前时间
+			    const now = new Date();
+			 
+			    // 提取年份、月份、日期、小时和分钟
+			    const year = now.getFullYear();
+			    const month = String(now.getMonth() + 1).padStart(2, '0'); 
+			    const day = String(now.getDate()).padStart(2, '0');
+			    const hours = String(now.getHours()).padStart(2, '0'); 
+			    const minutes = String(now.getMinutes()).padStart(2, '0');
+			 
+			    const formattedTime = `${year}-${month}-${day} ${hours}:${minutes}`;
+			 
+			    return formattedTime;
 			}
 			
 		},
@@ -58,7 +74,7 @@
 	background-color: #fdfdec;
 	padding: 30rpx 50rpx;
 	height: 100vh;
-	.todo-item {
+	.goodtodo-item,.badtodo-item {
 		height:300rpx;
 		padding: 30rpx 25rpx;
 		border: 1rpx solid black;
@@ -87,6 +103,9 @@
 			font-size: 25rpx;
 			border-bottom: 1rpx solid #ccc;
 		}
+	}
+	.badtodo-item {
+		border: 1rpx solid red;
 	}
 }
 </style>

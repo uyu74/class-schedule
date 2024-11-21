@@ -28,33 +28,36 @@
   padding: 30rpx 50rpx;
   height: 100vh;
 }
-.contenter .todo-item.data-v-067fb54d {
+.contenter .goodtodo-item.data-v-067fb54d, .contenter .badtodo-item.data-v-067fb54d {
   height: 300rpx;
   padding: 30rpx 25rpx;
   border: 1rpx solid black;
   border-radius: 20rpx;
   margin-bottom: 30rpx;
 }
-.contenter .todo-item .todo-label.data-v-067fb54d {
+.contenter .goodtodo-item .todo-label.data-v-067fb54d, .contenter .badtodo-item .todo-label.data-v-067fb54d {
   font-size: 50rpx;
   width: 150rpx;
 }
-.contenter .todo-item .todo-content.data-v-067fb54d {
+.contenter .goodtodo-item .todo-content.data-v-067fb54d, .contenter .badtodo-item .todo-content.data-v-067fb54d {
   display: flex;
   margin-bottom: 30rpx;
   align-items: baseline;
   font-size: 40rpx;
 }
-.contenter .todo-item .todo-time.data-v-067fb54d {
+.contenter .goodtodo-item .todo-time.data-v-067fb54d, .contenter .badtodo-item .todo-time.data-v-067fb54d {
   display: flex;
   margin-bottom: 30rpx;
   align-items: baseline;
   font-size: 30rpx;
 }
-.contenter .todo-item .todo-remark.data-v-067fb54d {
+.contenter .goodtodo-item .todo-remark.data-v-067fb54d, .contenter .badtodo-item .todo-remark.data-v-067fb54d {
   display: flex;
   margin-bottom: 30rpx;
   align-items: baseline;
   font-size: 25rpx;
   border-bottom: 1rpx solid #ccc;
+}
+.contenter .badtodo-item.data-v-067fb54d {
+  border: 1rpx solid red;
 }

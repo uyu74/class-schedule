@@ -37,7 +37,7 @@
           <text>日程备注（可选）</text>
           <input v-model="todoRemark" type="text" placeholder="请输入日程的备注" />
         </view>
-        <button class="submit-btn" type="button" @click="addTodo">添加日程</button>
+        <button :class="{ 'disablesubmit-btn': disableButton, 'ablesubmit-btn': !disableButton }" type="button" :disabled="disableButton" @click="addTodo">添加日程</button>
       </form>
     </view>
 
@@ -59,7 +59,7 @@ export default {
       todoContent: "",
 	  todoTime:"",
       todoTimeDate: "",
-	  todoTimeClock: "0:0",
+	  todoTimeClock: "00:00",
       todoRemark: "",
       todos: []
     };
@@ -77,71 +77,78 @@ export default {
 		
 		this.todoTimeDate = `${year}-${month}-${day}`;
 		return `${year}-${month}-${day}`;
+	  },
+	  disableButton(){
+		 /* if(this.todoContent == null)
+		  return false; */
+	   return !this.todoContent.trim();
 	  }
-  } 
-  ,
+  } ,
   
   methods: {
-	// 添加日程
-	addTodo() {
-		//检测初始化
-		if (this.todoContent) {
-		  let todo_len = 0;
-		  try{
-			  todo_len = uni.getStorageSync("todo-len");
-			  console.log(todo_len);
-			  if(!todo_len)
-			  {
-				  todo_len = 0;
-				  uni.setStorageSync("todo-len",todo_len);
-			  }
-			  
-		  } catch(e) {
-			  //获取长度失败
-			  uni.showToast({
-				title: '更新数据失败',
-				icon:"error"
-			  });
-			 return;
-		}
-		  
-		// 添加日程到显示的日程列表
-		this.todoTime = this.todoTimeDate+"  "+this.todoTimeClock;
-		this.todos.push({
-			  _id:todo_len+1,
-			  content: this.todoContent,
-			  time: this.todoTime,
-			  remark: this.todoRemark
-		});
-		
-		//由于推荐储存为字符串形式为了方便解析，使用/分割各个量，依次为content,time,remark
-		uni.setStorageSync("todo-"+(todo_len+1).toString(),this.todos[this.todos.length -1]);
-		uni.setStorageSync("todo-len",todo_len+1);
-		// 清空输入框
-		this.todoContent = "";
-		this.todoTime = "";
-		this.todoRemark = "";
-		
-		// 提示添加成功
-		uni.showToast({
-		title: "日程已添加",
-		icon: "success"
-		});
-		} else {
-		uni.showToast({
-		  title: "请填写完整的课程信息",
-		  icon: "error"
-		});
-		}
-	  },
-		
+		  //更新储存，按时间顺序
+		  refreshStorage(e){
+			let old_todolist = uni.getStorageSync("todo-list");
+			let insertIndex = old_todolist.findIndex(item => item.time > e.time)
+		   if (insertIndex == -1) {
+				old_todolist.push(e);
+			} else {
+				console.log(insertIndex);
+				old_todolist.splice(insertIndex, 0, e);
+			}
+			uni.setStorageSync("todo-list",old_todolist);
+			return true;
+		  },
+		  //本页的显示的更新
+		  refreshTodoShown(e){
+			this.todos.push(e);
+			return;
+		  },
+		  //检测初始化，若没有就初始为空
+		  initTodoList(){
+			let todo_list = uni.getStorageSync("todo-list");
+			if(!todo_list)
+			{
+				uni.setStorageSync("todo-list",[/* {
+					content:"",
+					time:"",
+					remark:""
+				} */]);
+			}
+			return;
+		  },
+		// 添加日程
+		addTodo() {
+			this.initTodoList();
+			const todo = {
+				content:this.todoContent,
+				time:this.todoTimeDate+" "+this.todoTimeClock,
+				remark:this.todoRemark
+			}
+			const successStorage = this.refreshStorage(todo);
+			if(successStorage == false)
+			{
+				uni.showToast({
+					content:"内存操作异常",
+					icon:"error"
+				})
+				return;
+			}
+			this.refreshTodoShown(todo);
+			this.todoContent = "";
+			this.todoRemark = "";
+		  },
 		changeDate(e){
 			this.todoTimeDate = e.detail.value;
-			console.log(this.todoTimeDate);
+			//console.log(this.todoTimeDate);
 		},
 		
 		changeClock(e) {
 			this.todoTimeClock = e.detail.value;
+			let parts = this.todoTimeClock.split(":");
+			if(parts[0]=="0")parts[0].push("0");
+			if(parts[1]=="0")parts[1].push("0");
+			this.todoTimeClock = parts[0]+":"+parts[1];
 			console.log(this.todoTimeClock);
 		}
 	  }
@@ -216,7 +223,7 @@ export default {
 				  }
 			  }
 		  }
-		  .submit-btn {
+		  .ablesubmit-btn {
 		    width: 100%;
 		    padding: 12px;
 		    background-color: #1c97f7;
@@ -228,6 +235,19 @@ export default {
 				.submit-btn:hover {
 				  background-color: #1873b0;
 				}
+		  }
+		  .disablesubmit-btn {
+			  width: 100%;
+			  padding: 12px;
+			  background-color: #6ab1c4;
+			  color: white;
+			  border: none;
+			  border-radius: 4px;
+			  font-size: 18px;
+			  cursor: pointer;
+			  	.submit-btn:hover {
+			  	  background-color: #1873b0;
+			  	}
 		  }
 	  }
 	}

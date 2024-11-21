@@ -1,5 +1,9 @@
 todo方面
-1.修改index后都撤回了  11.21
-2.为了方便操作，使用uni.setStorageSync()储存了关键数据
-	key: "todo-len" 内容为已存的代办事件的数量
-3.成功的实现了数据的存取
+11.21.上午 1.修改index后都撤回了  
+11.21.晚上 2.为了方便操作，使用uni.setStorageSync()储存了关键数据
+			todo-list：是一个数组，元素为todo事件，todo事件包括content,time,remark
+			时间的格式为y-m-d h-m，其中小时或分为0的即为00
+			remark为选填
+11.21.晚上 3.展示页面中
+			超期的事件的边框为红色
+			事件按时间顺序排列

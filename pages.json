@@ -65,7 +65,13 @@
 	    {
 		  "pagePath": "pages/schedule/schedule",
 		  "text": "课程表"
-	    }
+	    },
+		{
+			"pagePath": "pages/todo/todo",
+			"text": "待办",
+			"iconPath": "static/tododisIcon .png",
+			"selectedIconPath": "static/todoableIcon.png"
+		}
     ]
   }
 }

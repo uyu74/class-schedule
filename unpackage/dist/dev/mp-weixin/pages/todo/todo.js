@@ -34,7 +34,6 @@ const _sfc_main = {
       });
     },
     moveToAddTodo() {
-      console.log("点了");
       common_vendor.index.navigateTo({
         url: "/pages/obtain_todo_infromation/obtain_todo_infromation"
       });

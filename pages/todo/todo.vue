@@ -74,7 +74,7 @@
 				})
 			},
 			moveToAddTodo(){
-				console.log("点了");
+				//console.log("点了");
 				uni.navigateTo({
 					url:"/pages/obtain_todo_infromation/obtain_todo_infromation"
 				})

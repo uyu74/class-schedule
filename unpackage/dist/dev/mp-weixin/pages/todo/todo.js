@@ -67,8 +67,8 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return {
     a: common_vendor.f($data.todos, (todo, index, i0) => {
       return {
-        a: common_vendor.t(todo.content),
-        b: common_vendor.t(todo.time),
+        a: common_vendor.t(todo.time),
+        b: common_vendor.t(todo.content),
         c: common_vendor.t(todo.remark),
         d: todo.time <= $options.currentTime ? 1 : "",
         e: common_vendor.o(($event) => $options.onlongPressTodo(index), index),

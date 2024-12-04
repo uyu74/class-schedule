@@ -1,7 +1,7 @@
 <template>
   <view class="container">
     <view class="header">
-      <text class="title">日程信息录入</text>
+      <text class="title">日程信息修改</text>
     </view>
 
     <!-- 日程信息输入表单 -->
@@ -37,7 +37,7 @@
           <text>日程备注（可选）</text>
           <input v-model="todoRemark" type="text" placeholder="请输入日程的备注" />
         </view>
-        <button :class="{ 'disablesubmit-btn': disableButton, 'ablesubmit-btn': !disableButton }" type="button" :disabled="disableButton" @click="addTodo">添加日程</button>
+        <button :class="{ 'disablesubmit-btn': disableButton, 'ablesubmit-btn': !disableButton }" type="button" :disabled="disableButton" @click="addTodo">修改日程</button>
       </form>
     </view>
   </view>

@@ -6,16 +6,13 @@
 				'badtodo-item':todo.time<=currentTime}"
 				@longpress="onlongPressTodo(index)"
 				@click="onclickTodo(index)">
-				<view class="todo-content">
-					<text class="todo-label">内容：</text>
-					<text>{{todo.content}}</text>
-				</view>
 				<view class="todo-time">
-					<text class="todo-label">时间：</text>
 					<text>{{todo.time}}</text>
 				</view>
+				<view class="todo-content">
+					<text>{{todo.content}}</text>
+				</view>
 				<view class="todo-remark">
-					<text class="todo-label">备注：</text>
 					<text>{{todo.remark}}</text>
 				</view>
 			</view>
@@ -114,30 +111,29 @@ page {
 .contenter {
 	padding: 30rpx 50rpx;
 	height: 100vh;
+	background-color: #f3f3f3;
 	.goodtodo-item,.badtodo-item {
-		height:300rpx;
+		height:200rpx;
 		padding: 30rpx 25rpx;
-		border: 1rpx solid black;
+		background-color: white;
+		box-shadow: 0 4rpx 8rpx rgba(83, 83, 83, 0.1);
 		border-radius: 20rpx;
 		margin-bottom: 30rpx;
-		.todo-label {
-			font-size: 50rpx;
-			width:150rpx;
-		}
 		.todo-content {
 			display: flex;
 			margin-bottom: 30rpx;
 			align-items: baseline;
-			font-size: 40rpx;
+			font-size: 34rpx;
 		}
 		.todo-time {
 			display: flex;
 			margin-bottom: 30rpx;
 			align-items: baseline;
-			font-size: 30rpx;
+			font-size: 20rpx;
 		}
 		.todo-remark {
 			display: flex;
+			height: 60rpx;
 			margin-bottom: 30rpx;
 			align-items: baseline;
 			font-size: 25rpx;
@@ -150,13 +146,11 @@ page {
 }
 .addItemIcon {
 	position: fixed;
-	bottom:100rpx;
-	right:60rpx;
+	bottom:30rpx;
+	right:325rpx;
 	width:100rpx;
 	height: 100rpx;
-	border: 1rpx solid lightblue;
-	border-radius: 10rpx;
-	background-color: #ccc;
+	border-radius: 50rpx;
 	image {
 		width: 100%;
 		height: 100%;

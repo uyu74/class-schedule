@@ -29,32 +29,31 @@ page.data-v-067fb54d {
 .contenter.data-v-067fb54d {
   padding: 30rpx 50rpx;
   height: 100vh;
+  background-color: #f3f3f3;
 }
 .contenter .goodtodo-item.data-v-067fb54d, .contenter .badtodo-item.data-v-067fb54d {
-  height: 300rpx;
+  height: 200rpx;
   padding: 30rpx 25rpx;
-  border: 1rpx solid black;
+  background-color: white;
+  box-shadow: 0 4rpx 8rpx rgba(83, 83, 83, 0.1);
   border-radius: 20rpx;
   margin-bottom: 30rpx;
-}
-.contenter .goodtodo-item .todo-label.data-v-067fb54d, .contenter .badtodo-item .todo-label.data-v-067fb54d {
-  font-size: 50rpx;
-  width: 150rpx;
 }
 .contenter .goodtodo-item .todo-content.data-v-067fb54d, .contenter .badtodo-item .todo-content.data-v-067fb54d {
   display: flex;
   margin-bottom: 30rpx;
   align-items: baseline;
-  font-size: 40rpx;
+  font-size: 34rpx;
 }
 .contenter .goodtodo-item .todo-time.data-v-067fb54d, .contenter .badtodo-item .todo-time.data-v-067fb54d {
   display: flex;
   margin-bottom: 30rpx;
   align-items: baseline;
-  font-size: 30rpx;
+  font-size: 20rpx;
 }
 .contenter .goodtodo-item .todo-remark.data-v-067fb54d, .contenter .badtodo-item .todo-remark.data-v-067fb54d {
   display: flex;
+  height: 60rpx;
   margin-bottom: 30rpx;
   align-items: baseline;
   font-size: 25rpx;
@@ -65,13 +64,11 @@ page.data-v-067fb54d {
 }
 .addItemIcon.data-v-067fb54d {
   position: fixed;
-  bottom: 100rpx;
-  right: 60rpx;
+  bottom: 30rpx;
+  right: 325rpx;
   width: 100rpx;
   height: 100rpx;
-  border: 1rpx solid lightblue;
-  border-radius: 10rpx;
-  background-color: #ccc;
+  border-radius: 50rpx;
 }
 .addItemIcon image.data-v-067fb54d {
   width: 100%;

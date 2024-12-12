@@ -3,6 +3,10 @@ const common_vendor = require("../../common/vendor.js");
 const _sfc_main = {
   data() {
     return {
+      scheduleSettingsPopupVisible: false,
+      // 控制设置课程表弹窗显示
+      addCoursePopupVisible: false,
+      // 控制添加课程弹窗显示
       // 课程表数据
       schedule: {
         scheduleName: "",
@@ -13,13 +17,11 @@ const _sfc_main = {
         // 总周数
         daysPerWeek: 5,
         // 每周有几天课程
+        numPerDay: 5,
+        // 一天有几节课
         classDuration: 100,
-        // 每节课时长（默认100分钟）
-        scheduleSettingsPopupVisible: false,
-        // 控制设置课程表弹窗显示
-        addCoursePopupVisible: false,
-        // 控制添加课程弹窗显示
-        classTimes: [],
+        // 每节课时长（默认100分钟） 
+        classTimes: Array(6).fill({ inputTime: "", endTime: "" }),
         // 存储一天的课程时间
         courseName: "",
         // 课程名称
@@ -58,7 +60,32 @@ const _sfc_main = {
       console.error("未传递课程表名称");
     }
   },
+  watch: {
+    // 当 numPerDay 改变时，重新填充 times 数组
+    "schedule.numPerDay": function(newNumPerDay) {
+      this.times = Array(newNumPerDay).fill({ inputTime: "", endTime: "" });
+    }
+  },
+  mounted() {
+    this.schedule.classTimes = Array.from({ length: this.schedule.numPerDay }, () => ({
+      inputTime: "",
+      endTime: ""
+    }));
+  },
   methods: {
+    calculateEndTime(index) {
+      const inputTime = this.schedule.classTimes[index].inputTime;
+      if (!inputTime)
+        return;
+      const [hours, minutes] = inputTime.split(":").map(Number);
+      const date = /* @__PURE__ */ new Date();
+      date.setHours(hours);
+      date.setMinutes(minutes);
+      date.setMinutes(date.getMinutes() + 100);
+      const endHours = String(date.getHours()).padStart(2, "0");
+      const endMinutes = String(date.getMinutes()).padStart(2, "0");
+      this.schedule.classTimes[index].endTime = `${endHours}:${endMinutes}`;
+    },
     maskClick() {
       console.log("----maskClick事件");
     },
@@ -95,27 +122,31 @@ const _sfc_main = {
     },
     // 打开设置课程表的弹窗
     openSettingsPopup() {
+      console.log("设置课程表按钮被点击了");
       this.scheduleSettingsPopupVisible = true;
     },
     // 关闭设置课程表弹窗
     closeSettingsPopup() {
+      console.log("关闭设置课程表弹窗");
       this.scheduleSettingsPopupVisible = false;
     },
     // 打开添加课程的弹窗
     openAddCoursePopup() {
+      console.log("添加课程按钮被点击了");
       this.addCoursePopupVisible = true;
     },
     // 关闭添加课程弹窗
     closeAddCoursePopup() {
+      console.log("关闭添加课程弹窗");
       this.addCoursePopupVisible = false;
     },
     // 提交设置课程表的数据
     handleScheduleSettingsSubmit() {
-      console.log("学期开始日期:", this.startDate);
-      console.log("总周数:", this.totalWeeks);
-      console.log("每周课程天数:", this.daysPerWeek);
-      console.log("每节课时长:", this.classDuration);
-      console.log("课程时间:", this.classTimes);
+      console.log("学期开始日期:", this.schedule.startDate);
+      console.log("总周数:", this.schedule.totalWeeks);
+      console.log("每周课程天数:", this.schedule.daysPerWeek);
+      console.log("每节课时长:", this.schedule.classDuration);
+      console.log("课程时间:", this.schedule.classTimes);
       this.closeSettingsPopup();
     },
     //加载课程表
@@ -184,12 +215,14 @@ const _sfc_main = {
 if (!Array) {
   const _easycom_uni_section2 = common_vendor.resolveComponent("uni-section");
   const _easycom_uni_datetime_picker2 = common_vendor.resolveComponent("uni-datetime-picker");
-  (_easycom_uni_section2 + _easycom_uni_datetime_picker2)();
+  const _easycom_uni_easyinput2 = common_vendor.resolveComponent("uni-easyinput");
+  (_easycom_uni_section2 + _easycom_uni_datetime_picker2 + _easycom_uni_easyinput2)();
 }
 const _easycom_uni_section = () => "../../uni_modules/uni-section/components/uni-section/uni-section.js";
 const _easycom_uni_datetime_picker = () => "../../uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.js";
+const _easycom_uni_easyinput = () => "../../uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.js";
 if (!Math) {
-  (_easycom_uni_section + _easycom_uni_datetime_picker)();
+  (_easycom_uni_section + _easycom_uni_datetime_picker + _easycom_uni_easyinput)();
 }
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return common_vendor.e({
@@ -208,44 +241,79 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       ["clear-icon"]: false,
       modelValue: $data.schedule.startDate
     }),
-    f: $data.schedule.totalWeeks,
-    g: common_vendor.o(($event) => $data.schedule.totalWeeks = $event.detail.value),
-    h: common_vendor.o((...args) => $options.openSettingsPopup && $options.openSettingsPopup(...args)),
-    i: common_vendor.o((...args) => $options.openAddCoursePopup && $options.openAddCoursePopup(...args)),
-    j: _ctx.scheduleSettingsPopupVisible
-  }, _ctx.scheduleSettingsPopupVisible ? {
-    k: $data.schedule.daysPerWeek,
-    l: common_vendor.o(($event) => $data.schedule.daysPerWeek = $event.detail.value),
-    m: $data.schedule.classDuration,
-    n: common_vendor.o(($event) => $data.schedule.classDuration = $event.detail.value),
-    o: common_vendor.f(_ctx.daysPerWeek, (day, index, i0) => {
+    f: common_vendor.p({
+      title: "学期总周数"
+    }),
+    g: common_vendor.o(_ctx.input),
+    h: common_vendor.o(($event) => $data.schedule.totalWeeks = $event),
+    i: common_vendor.p({
+      trim: "all",
+      placeholder: "请输入内容",
+      modelValue: $data.schedule.totalWeeks
+    }),
+    j: common_vendor.o((...args) => $options.openSettingsPopup && $options.openSettingsPopup(...args)),
+    k: common_vendor.o((...args) => $options.openAddCoursePopup && $options.openAddCoursePopup(...args)),
+    l: $data.scheduleSettingsPopupVisible
+  }, $data.scheduleSettingsPopupVisible ? {
+    m: common_vendor.p({
+      title: "一天课程节数:"
+    }),
+    n: common_vendor.o(_ctx.input),
+    o: common_vendor.o(($event) => $data.schedule.numPerDay = $event),
+    p: common_vendor.p({
+      trim: "all",
+      placeholder: "请输入内容",
+      modelValue: $data.schedule.numPerDay
+    }),
+    q: common_vendor.p({
+      title: "一节课持续的时间:(分钟)"
+    }),
+    r: common_vendor.o(_ctx.input),
+    s: common_vendor.o(($event) => $data.schedule.classDuration = $event),
+    t: common_vendor.p({
+      trim: "all",
+      placeholder: "请输入内容",
+      modelValue: $data.schedule.classDuration
+    }),
+    v: common_vendor.p({
+      title: "上课时间设置:(24小时制)"
+    }),
+    w: common_vendor.f(Array.from({
+      length: $data.schedule.numPerDay
+    }, (_, i) => ({
+      inputTime: "",
+      endTime: ""
+    })), (time, index, i0) => {
       return {
-        a: $data.schedule.classTimes[index],
-        b: common_vendor.o(($event) => $data.schedule.classTimes[index] = $event.detail.value, index),
-        c: index
+        a: common_vendor.t(index + 1),
+        b: common_vendor.o(($event) => $options.calculateEndTime(index), index),
+        c: $data.schedule.classTimes[index].inputTime,
+        d: common_vendor.o(($event) => $data.schedule.classTimes[index].inputTime = $event.detail.value, index),
+        e: common_vendor.t($data.schedule.classTimes[index].endTime),
+        f: index
       };
     }),
-    p: common_vendor.o((...args) => $options.handleScheduleSettingsSubmit && $options.handleScheduleSettingsSubmit(...args)),
-    q: common_vendor.o((...args) => $options.closeSettingsPopup && $options.closeSettingsPopup(...args))
+    x: common_vendor.o((...args) => $options.handleScheduleSettingsSubmit && $options.handleScheduleSettingsSubmit(...args)),
+    y: common_vendor.o((...args) => $options.closeSettingsPopup && $options.closeSettingsPopup(...args))
   } : {}, {
-    r: _ctx.addCoursePopupVisible
-  }, _ctx.addCoursePopupVisible ? {
-    s: $data.schedule.courseName,
-    t: common_vendor.o(($event) => $data.schedule.courseName = $event.detail.value),
-    v: common_vendor.t(_ctx.weekDays[_ctx.courseDayIndex]),
-    w: $data.schedule.courseDayIndex,
-    x: _ctx.weekDays,
-    y: common_vendor.o((...args) => $options.onCourseDayChange && $options.onCourseDayChange(...args)),
-    z: $data.schedule.coursePeriod,
-    A: common_vendor.o(($event) => $data.schedule.coursePeriod = $event.detail.value),
-    B: common_vendor.t(_ctx.selectedWeeks.join(", ")),
-    C: $data.schedule.selectedWeeksIndex,
-    D: $data.schedule.weekRange,
-    E: common_vendor.o((...args) => $options.onWeekChange && $options.onWeekChange(...args)),
-    F: common_vendor.o((...args) => _ctx.handleAddCourse && _ctx.handleAddCourse(...args)),
-    G: common_vendor.o((...args) => $options.closeAddCoursePopup && $options.closeAddCoursePopup(...args))
+    z: $data.addCoursePopupVisible
+  }, $data.addCoursePopupVisible ? {
+    A: $data.schedule.courseName,
+    B: common_vendor.o(($event) => $data.schedule.courseName = $event.detail.value),
+    C: common_vendor.t(_ctx.weekDays[_ctx.courseDayIndex]),
+    D: $data.schedule.courseDayIndex,
+    E: _ctx.weekDays,
+    F: common_vendor.o((...args) => $options.onCourseDayChange && $options.onCourseDayChange(...args)),
+    G: $data.schedule.coursePeriod,
+    H: common_vendor.o(($event) => $data.schedule.coursePeriod = $event.detail.value),
+    I: common_vendor.t(_ctx.selectedWeeks.join(", ")),
+    J: $data.schedule.selectedWeeksIndex,
+    K: $data.schedule.weekRange,
+    L: common_vendor.o((...args) => $options.onWeekChange && $options.onWeekChange(...args)),
+    M: common_vendor.o((...args) => _ctx.handleAddCourse && _ctx.handleAddCourse(...args)),
+    N: common_vendor.o((...args) => $options.closeAddCoursePopup && $options.closeAddCoursePopup(...args))
   } : {}, {
-    H: common_vendor.f(_ctx.weekDays, (day, index, i0) => {
+    O: common_vendor.f(_ctx.weekDays, (day, index, i0) => {
       return {
         a: common_vendor.t(day),
         b: common_vendor.f(_ctx.sortedCourses[day], (course, idx, i1) => {

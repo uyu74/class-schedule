@@ -3,6 +3,9 @@
 .container.data-v-bb6e3cb4 {
   padding: 20px;
 }
+.time-row.data-v-bb6e3cb4 {
+  margin-bottom: 10px;
+}
 .popup.data-v-bb6e3cb4 {
   position: fixed;
   top: 50%;
@@ -10,7 +13,7 @@
   transform: translate(-50%, -50%);
   width: 80%;
   max-width: 400px;
-  background-color: white;
+  background-color: #ffffff; /* 设置为不透明的白色背景 */
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
@@ -36,4 +39,18 @@ button.data-v-bb6e3cb4:hover {
 .datePicker.data-v-bb6e3cb4 {
 		background-color: #fff;
 		padding: 10px;
+}
+.mb-10.data-v-bb6e3cb4 {
+		margin-bottom: 10px;
+}
+.uni-mt-5.data-v-bb6e3cb4 {
+	margin-top: 5px;
+}
+.time-picker.data-v-bb6e3cb4 {
+  padding: 20px;
+}
+.time-row-content.data-v-bb6e3cb4 {
+  display: flex;
+  align-items: center; /* 垂直居中 */
+  gap: 5px; /* 设置元素之间的间距，可根据需要调整 */
 }

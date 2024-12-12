@@ -15,6 +15,13 @@
           "scene": null
         },
         {
+          "name": "pages/obtain_class_information/obtain_class_information",
+          "pathName": "pages/obtain_class_information/obtain_class_information",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/schedule_list/schedule_list",
           "pathName": "pages/schedule_list/schedule_list",
           "query": "",

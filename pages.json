@@ -21,13 +21,6 @@
     	}
     },
     {
-    	"path" : "pages/schedule_settings/schedule_settings",
-    	"style" : 
-    	{
-    		"navigationBarTitleText" : ""
-    	}
-    },
-    {
     	"path" : "pages/obtain_todo_infromation/obtain_todo_infromation",
     	"style" : 
     	{
@@ -43,6 +36,13 @@
     },
     {
     	"path" : "pages/todo_settings/todo_settings",
+    	"style" : 
+    	{
+    		"navigationBarTitleText" : ""
+    	}
+    },
+    {
+    	"path" : "pages/schedule_list/schedule_list",
     	"style" : 
     	{
     		"navigationBarTitleText" : ""

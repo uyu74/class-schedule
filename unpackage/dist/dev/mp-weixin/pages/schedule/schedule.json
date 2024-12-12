@@ -1,4 +1,7 @@
 {
   "navigationBarTitleText": "课程表",
-  "usingComponents": {}
+  "usingComponents": {
+    "uni-section": "../../uni_modules/uni-section/components/uni-section/uni-section",
+    "uni-datetime-picker": "../../uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker"
+  }
 }

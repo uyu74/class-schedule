@@ -8,6 +8,34 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/obtain_class_information/obtain_class_information",
+          "pathName": "pages/obtain_class_information/obtain_class_information",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/schedule_list/schedule_list",
+          "pathName": "pages/schedule_list/schedule_list",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/schedule_settings/schedule_settings",
+          "pathName": "pages/schedule_settings/schedule_settings",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/schedule/schedule",
+          "pathName": "pages/schedule/schedule",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/index/index",
           "pathName": "pages/index/index",
           "query": "",

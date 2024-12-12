@@ -1,0 +1,1 @@
+<view class="container data-v-71c7243e"><view class="schedule-list data-v-71c7243e"><text class="data-v-71c7243e">已创建的课程表:</text><view wx:for="{{a}}" wx:for-item="schedule" wx:key="b" class="data-v-71c7243e"><text class="data-v-71c7243e">{{schedule.a}}</text></view></view><button class="create-btn data-v-71c7243e" bindtap="{{b}}">新建课程表</button></view>

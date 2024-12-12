@@ -1,89 +1,36 @@
 <template>
   <view class="container">
-    <!-- 页面内容 -->
-    <view class="content">
-      <!-- 课程表内容 --> <!-- 待完成 -->
-    </view>
-    
-    <!-- 底部按钮 -->
-    <view class="bottom-btn-container">
-      <view class="bottom-btn-add-course" @click="goToObtainClassInformationPage">添加课程</view>
-      <view class="bottom-btn-schedule-setting" @click="goToScheduleSettingsPage">设置日程</view>
-    </view>
+    <!-- 显示传递过来的课程表名称 -->
+    <uni-section title="学期开始的第一天" type="line"></uni-section>
+	<uni-datetime-picker type="date" :clear-icon="false" v-model="single" @maskClick="maskClick" />
   </view>
 </template>
 
 <script>
+import uniSection from '@/uni_modules/uni-section/components/uni-section/uni-section.vue';  // 引入组件
 export default {
   data() {
-    return {};
+    return {
+		single: '',  // 存储选择的时间
+      scheduleName: ''  // 存储传递过来的课程表名称
+    };
   },
-  methods: {
-    // 跳转到课程表页面
-    goToObtainClassInformationPage() {
-      uni.navigateTo({
-        url: '/pages/obtain_class_information/obtain_class_information'  // 目标页面路径
-      });
-    },
-	
-	goToScheduleSettingsPage() {
-		uni.navigateTo({
-			url: '/pages/schedule_settings/schedule_settings'
-		});
-	},
-	onLoad() {
-		const storedCourses = uni.getStorageSync("courses");
-		if (storedCourses) {
-			this.courses = storedCourses;
-			console.log("成功找到课程");
-		} else {
-			console.log("没有找到课程数据");
-		}
-	}
-	
+  onLoad(options) {
+    // 获取传递的课程表名称
+    if (options.scheduleName) {
+      this.scheduleName = options.scheduleName;  // 将课程表名称赋值给 data
+    }
   }
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+$uni-success: #18bc37 !default;
+/* 样式根据需要自行修改 */
 .container {
   padding: 20px;
 }
-
-.content {
-  margin-bottom: 100px; /* 留出底部按钮的空间 */
-}
-
-.bottom-btn-container {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  justify-content: space-between;
-  width: 200px;
-  z-index: 10;
-}
-
-.bottom-btn-add-course, .bottom-btn-schedule-setting {
-  background-color: #1c97f7;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 20px;
-  font-size: 16px;
-  text-align: center;
-}
-
-.bottom-btn-add-course {
-  margin-right: 10px; /* 按钮间距 */
-}
-
-.bottom-btn-schedule-setting {
-  background-color: #1c97f7;
-}
-
-/* 按钮点击样式 */
-.bottom-btn-add-course:hover, .bottom-btn-schedule-setting:hover {
-  background-color: #1873b0;
-}
+.mb-10 {
+		margin-bottom: 10px;
+	}
 </style>

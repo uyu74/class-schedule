@@ -1,0 +1,27 @@
+
+/* 页面容器，使用flex布局 */
+.container.data-v-71c7243e {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;  /* 保证按钮在底部 */
+  padding: 20px;
+}
+
+/* 课程表列表 */
+.schedule-list.data-v-71c7243e {
+  flex: 1;  /* 占据剩余空间 */
+}
+
+/* 按钮样式 */
+.create-btn.data-v-71c7243e {
+  width: 120px;
+  height: 40px;
+  background-color: #007aff;
+  color: white;
+  border-radius: 5px;
+  font-size: 14px;
+  align-self: center;  /* 让按钮居中对齐 */
+  position: fixed;
+  bottom: 20px;  /* 距离底部 20px */
+}

@@ -1,59 +1,39 @@
 
+/* 样式根据需要自行修改 */
 .container.data-v-bb6e3cb4 {
   padding: 20px;
 }
-.header.data-v-bb6e3cb4 {
-  text-align: center;
-  margin-bottom: 20px;
+.popup.data-v-bb6e3cb4 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 400px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }
-.title.data-v-bb6e3cb4 {
-  font-size: 24px;
-  font-weight: bold;
-}
-.form-section.data-v-bb6e3cb4 {
-  margin-bottom: 30px;
-}
-.input-group.data-v-bb6e3cb4 {
-  margin-bottom: 15px;
-}
-input.data-v-bb6e3cb4 {
-  width: 100%;
+.picker.data-v-bb6e3cb4 {
   padding: 10px;
-  margin-top: 5px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 16px;
+  background-color: #f0f0f0;
 }
-.submit-btn.data-v-bb6e3cb4 {
-  width: 100%;
-  padding: 12px;
-  background-color: #1c97f7;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 18px;
-  cursor: pointer;
-}
-.submit-btn.data-v-bb6e3cb4:hover {
-  background-color: #1873b0;
-}
-.course-list.data-v-bb6e3cb4 {
+.schedule-table.data-v-bb6e3cb4 {
   margin-top: 20px;
 }
-.course-item.data-v-bb6e3cb4 {
-  background-color: #f8f8f8;
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+button.data-v-bb6e3cb4 {
+  margin-top: 10px;
+  background-color: #007BFF;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
 }
-.course-name.data-v-bb6e3cb4 {
-  font-size: 18px;
-  font-weight: bold;
+button.data-v-bb6e3cb4:hover {
+  background-color: #0056b3;
 }
-.course-time.data-v-bb6e3cb4,
-.course-location.data-v-bb6e3cb4 {
-  font-size: 16px;
-  color: #666;
-  margin-top: 5px;
+.datePicker.data-v-bb6e3cb4 {
+		background-color: #fff;
+		padding: 10px;
 }

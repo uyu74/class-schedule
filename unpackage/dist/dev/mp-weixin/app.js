@@ -5,10 +5,10 @@ if (!Math) {
   "./pages/index/index.js";
   "./pages/schedule/schedule.js";
   "./pages/obtain_class_information/obtain_class_information.js";
-  "./pages/schedule_settings/schedule_settings.js";
   "./pages/obtain_todo_infromation/obtain_todo_infromation.js";
   "./pages/todo/todo.js";
   "./pages/todo_settings/todo_settings.js";
+  "./pages/schedule_list/schedule_list.js";
 }
 const _sfc_main = {
   onLaunch: function() {
